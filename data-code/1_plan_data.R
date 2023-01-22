@@ -1,7 +1,7 @@
 #########################################################################
 ## Read in enrollment data for january of each year
 #########################################################################
-#install.packages("tidyverse")
+install.packages("tidyverse")
 library(tidyverse)
 for (y in 2007:2015) {
   ## Basic contract/plan information
@@ -98,9 +98,27 @@ length(unique(full.ma.data$plan_type))
 #table of plan types for each year 
 
 table(full.ma.data$plan_type)
+table1 <- full.ma.data %>%
+  group_by(year, plan_type) %>%
+  summarize(count = n()) %>%
+  pivot_wider(names_from = year, values_from = count)
+table1
+knitr::kable(table1,
+             type="html", caption = "Plan Count by Year", booktabs = TRUE) #this makes it look better 
 
+#Remove all special needs plans (SNP), employer group plans (eghp), and all “800-series” plans. 
+#Provide an updated version of Table 1 after making these exclusions.
 
-  
+table2 <- full.ma.data %>%
+  filter(plan_type %in% c("SNP", "eghp"))%>%
+  group_by(year, plan_type) %>%
+  summarize(count = n()) %>%
+  pivot_wider(names_from = year, values_from = count)
+table2
+knitr::kable(table2,
+             type="html", caption = "Plan Count by Year", booktabs = TRUE) #this makes it look better 
+
+table1  
 #knitr::kable(full.ma.data, col.names=c("2007", "2008", "2009", "2010","2011","2012","2013","2014","2015"),
-             type="html", caption = "Plan Count by Year", booktabs = TRUE)
+          #   type="html", caption = "Plan Count by Year", booktabs = TRUE)
   
