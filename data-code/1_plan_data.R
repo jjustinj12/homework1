@@ -1,14 +1,15 @@
 #########################################################################
 ## Read in enrollment data for january of each year
 #########################################################################
-install.packages("tidyverse")
+##install.packages("tidyverse")
 library(tidyverse)
+library(pacman)
 for (y in 2007:2015) {
   ## Basic contract/plan information
   ma.path=paste0("data/input/monthly-ma-and-pdp-enrollment-by-cpsc/CPSC_Contract_Info_",y,"_01.csv")
   contract.info=read_csv(ma.path,
-                         skip=1,
-                         col_names = c("contractid","planid","org_type","plan_type",
+                         skip=1, # this is how you skip the header 
+                         col_names = c("contractid","planid","org_type","plan_type", 
                                        "partd","snp","eghp","org_name","org_marketing_name",
                                        "plan_name","parent_org","contract_date"),
                          col_types = cols(
@@ -25,6 +26,7 @@ for (y in 2007:2015) {
                            parent_org = col_character(),
                            contract_date = col_character()
                          ))
+ #removing duplicates
   
   contract.info = contract.info %>%
     group_by(contractid, planid) %>%
@@ -138,7 +140,6 @@ graph_5 <- ggplot(ma_per_county, aes(x=year, y=avg_enrollment, group=fips, color
   xlab("Year") +
   ylab("Average Enrollment")
 graph_5
-
 
 
 #6 
