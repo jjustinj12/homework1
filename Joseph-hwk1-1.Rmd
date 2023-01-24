@@ -11,14 +11,9 @@ library(pacman)
 library(tidyverse)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 full.ma.data <- read_rds("data/output/full_ma_data.rds")
 contract.service.area <- read_rds("data/output/contract_service_area.rds")
 plan.premiums <- read_rds("data/output/plan_premiums.rds")
@@ -108,22 +103,17 @@ ggplot(graph_7, aes(x=year, y=zero_prem)) +
   ylab("Percent of plans with 0$ Premiums")
 
 
-#8
-#We dropped thed 800 series plans because they are employer sponsored plans 
 
-#Why do so many plans charge a $0 premium? What does that really mean to a beneficiary?
-#Briefly describe your experience working with these data (just a few sentences). Tell me one thing you learned and one thing that really aggravated you.
 
 
 
 ```
 
-## Including Plots
+##8
+We dropped thed 800 series plans because they are employer sponsored plans 
 
-You can also embed plots, for example:
+##9 
+So many plans may be $0 dollars because these are medicare plans and have no premiums or some medicare advanateg plans may have 0 dollar premiums but can be offseted by high cost sharing in terms of greater deductibles 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##10
+This was quite the journey to say the least. In terms of positives I did like that this experience was a bit like riding a bike where I was able how to clean some data and read your data and still understand whats going on. In addition, i do need to learn more about combining and using for loops to make my processes more efficient. However, the biggest area of trouble was having an old computer that made my life very diffcult as well as having a lot of trouble with Git hub. I think i spent more time trying to figure out git than the actual code itself which is little bit deperessing and frustrating. 
