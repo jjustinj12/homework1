@@ -112,10 +112,10 @@ ggplot(graph_7, aes(x=year, y=zero_prem)) +
 ```
 
 ##8
-We dropped thed 800 series plans because they are employer sponsored plans 
+We dropped the 800 series plans because they are employer sponsored plans 
 
 ##9 
-So many plans may be $0 dollars because these are medicare plans and have no premiums or some medicare advanateg plans may have 0 dollar premiums but can be offseted by high cost sharing in terms of greater deductibles 
+So many plans may be $0 dollars because these are medicare plans and have no premiums or some medicare advantage plans may have 0 dollar premiums but can be offset by high cost sharing in terms of greater deductibles 
 
 ##10
-This was quite the journey to say the least. In terms of positives I did like that this experience was a bit like riding a bike where I was able how to clean some data and read your data and still understand whats going on. In addition, i do need to learn more about combining and using for loops to make my processes more efficient. However, the biggest area of trouble was having an old computer that made my life very diffcult as well as having a lot of trouble with Git hub. I think i spent more time trying to figure out git than the actual code itself which is little bit deperessing and frustrating. 
+This was quite the journey to say the least. In terms of positives I did like that this experience was a bit like riding a bike where I was able how to clean some data and read your data and still understand whats going on. In addition, i do need to learn more about combining and using for loops to make my processes more efficient. However, the biggest area of trouble was having an old computer that made my life very difficult as well as having a lot of trouble with Git hub. I think i spent more time trying to figure out git than the actual code itself which is little bit depressing and frustrating. IN THE LAST 15 minutes I figured it out THIS WAS AWESOME HAHAHAHAH
