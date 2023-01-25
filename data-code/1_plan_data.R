@@ -178,3 +178,58 @@ ggplot(graph_7, aes(x=year, y=zero_prem)) +
 #Why do so many plans charge a $0 premium? What does that really mean to a beneficiary?
 #Briefly describe your experience working with these data (just a few sentences). Tell me one thing you learned and one thing that really aggravated you.
 
+
+
+#based on class 
+
+#total number of observations
+tot.obs<- as.numeric(count(full.ma.data %>% ungroup()))
+
+
+#this is counts the number of observations in each plan 
+plan.type.table <- full.ma.data %>% group_by(plan_type) %>% count() %>% arrange(-n)
+#
+plan.type.year1 <- full.ma.data %>% group_by(plan_type, year) %>% count() %>% arrange(year, -n) %>% filter(plan_type!="NA")
+plan.type.year1 <-pivot_wider(plan.type.year1, names_from="year", values_from= "n", names_prefix="Count_")
+
+final.plans <-full.ma.data %>%
+  filter(snp == "No" & eghp == "No" & 
+           (planid <800 | planid >=900))
+plan.type.year2 <- final.plans %>% group_by(plan_type, year) %>% count() %>% arrange(year, -n)
+plan.type.year2 <- pivot_wider(plan.type.year2, names_from="year", values_from="n", names_prefix = "Count_")
+plan.type.year2
+
+#question 5 based on class 
+final.data <- final.plans %>%
+  inner_join(contract.service.area %>%
+               select(contractid, fips,year),
+             by=c("contractid", "fips", "year")) %>%
+  filter(!is.na(avg_enrollment))
+
+
+library(pacman)
+fig.avg.enrollment <- final.data %>%
+  group_by(fips, year) %>%
+  select(fips, year, avg_enrollment) %>%
+  summarize(all_enroll=sum(avg_enrollment))%>%
+  ggplot(aes(x=as.factor(year), y=all_enroll))+ 
+  stat_summary(fun.y="mean", geom="bar") +
+  labs(
+    x="Year",
+    y="People",
+    title=""
+  ) + scale_y_continuous(labels=comma) + 
+  theme_bw()
+fig.avg.enrollment
+
+
+fig.avg.premium<- prem.data %>% ungroup() %>% group_by(year) %>%
+  ggplot(aes(x=as.factor(year), y=premium, ))
+  
+
+
+rm(list=c("full.ma.data", "contract.service.area", "ma.pentration.data", 
+          "plan.premiums", "final.plans", "final.data"))
+save.image("Hwk1_workspace.Rdata")
+
+

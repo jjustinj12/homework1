@@ -5,7 +5,7 @@
 ## Notes:         R file to build Medicare Advantage dataset
 ########################################################################################
 #if (!require("pacman")) install.packages("pacman")
-#pacman::p_load(tidyverse, ggplot2, dplyr, lubridate, stringr, readxl, data.table, gdata)
+pacman::p_load(tidyverse, ggplot2, dplyr, lubridate, stringr, readxl, data.table, gdata)
 library(pacman)
 #########################################################################
 ## Build plan-level dataset
@@ -24,13 +24,13 @@ source("data-code/8_FFS_Costs.R")
 #########################################################################
 full.ma.data <- read_rds("data/output/full_ma_data.rds")
 contract.service.area <- read_rds("data/output/contract_service_area.rds")
-star.ratings <- read_rds("data/output/star_ratings.rds")
+#star.ratings <- read_rds("data/output/star_ratings.rds")
 ma.penetration.data <- read_rds("data/output/ma_penetration.rds")
 plan.premiums <- read_rds("data/output/plan_premiums.rds")
-risk.rebate.final <- read_rds("data/output/risk_rebate.rds")
-benchmark.final <- read_rds("data/output/ma_benchmark.rds") %>%
-  mutate(ssa=as.double(ssa))
-ffs.costs.final <- read_rds("data/output/ffs_costs.rds")
+#risk.rebate.final <- read_rds("data/output/risk_rebate.rds")
+#benchmark.final <- read_rds("data/output/ma_benchmark.rds") %>%
+#  mutate(ssa=as.double(ssa))
+#ffs.costs.final <- read_rds("data/output/ffs_costs.rds")
 
 final.data <- full.ma.data %>%
   inner_join(contract.service.area %>% 
@@ -124,5 +124,6 @@ final.data <- final.data %>%
   ))
 
 write_rds(final.data,"data/output/final_ma_data.rds")
+
 
 
