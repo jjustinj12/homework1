@@ -1,0 +1,91 @@
+---
+title: "Joseph-J-hwk1-3"
+author: "Justin Joseph"
+date: "2023-01-29"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(pacman)
+library(tidyverse)
+
+```
+# Answers: 
+
+```{r cars}
+load("Hwk1_workspace.Rdata")
+tot.obs<-readRDS("total_observations.rds")
+number_of_plantypes<-readRDS("number_of_plantypes.rds")
+```
+
+### 1. How many observations exist in your current dataset?
+The total number of observations is `r format(tot.obs, big.mark=",")`.
+
+### 2. How many different plan types exist in the data?
+
+There are `r format(number_of_plantypes, big.mark= ",")` different plan types that exist in this data set 
+
+Below is a table of the different plan types for reference:
+
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+knitr::kable(plan.type.table,
+             type="html", caption = "Plan Types", booktabs = TRUE)
+
+```
+
+### 3. Provide a table of the count of plans under each plan type in each year. 
+```{r}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+colnames(plan.type.year1) <- c("Plan Type", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015")
+knitr::kable(plan.type.year1, type="html", caption = "Plan Types", booktabs = TRUE)
+```
+
+
+### 4.Remove all special needs plans (SNP), employer group plans (eghp), and all “800-series” plans. Provide an updated version of Table 1
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+colnames(plan.type.year2) <- c("Plan Type", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015")
+knitr::kable(plan.type.year2,
+             type="html", caption = "Plan Types", booktabs = TRUE)
+```
+
+
+### 5. Provide a graph showing the average number of Medicare Advantage enrollees per county
+```{r, echo=FALSE}
+knitr::include_graphics("fig_avg_enrollment.png")
+
+```
+
+### 6. Provide a graph showing the average premium over time. 
+```{r, echo=FALSE}
+
+knitr::include_graphics("fig_avg_premiums.png")
+```
+
+
+
+### 7. Provide a graph showing the percentage of $0 premium plans over time.
+
+```{r, echo=FALSE}
+knitr::include_graphics("perc_zero_graph.png")
+```
+
+
+### 8. Why did we drop the “800-series” plans?
+The reason we are dropping 800-series plans because these are insurance plans offered by employers/unions given to retired beneficiaries and specifically 800 plans are managed through third party companies such as medicare advantage organizations. This is removed because they are different from plans from traditional medicare or Medicare advantage not through one's employer. 
+
+
+### 9. Why do so many plans charge a $0 premium? What does that really mean to a beneficiary?
+So many plans may be $0 dollars because these are medicare plans and have no premiums or some medicare advantage plans may have 0 dollar premiums but can be offset by high cost sharing in terms of greater deductibles 
+
+### 10. Briefly describe your experience working with these data (just a few sentences). Tell me one thing you learned and one thing that really aggravated you.
+This was quite the journey to say the least. In terms of positives I did like that this experience was a bit like riding a bike where I was able how to clean some data and read your data and still understand whats going on. In addition, i do need to learn more about combining and using for loops to make my processes more efficient. However, the biggest area of trouble was having an old computer that made my life very difficult as well as having a lot of trouble with Git hub. I think i spent more time trying to figure out git than the actual code itself which is little bit depressing and frustrating. However, funny enough in the last 15 minutes of the first submission i was able to figure it out which was really amazing and made me feel really proud I was able to figure it out on my own. Ultimately, moving forward I hope to get more confident in my skills with playing with the data and troubleshooting some of the errors faster and more efficiently 
+
+
