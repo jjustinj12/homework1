@@ -14,6 +14,11 @@ library(tidyverse)
 ```
 
 
+```{r}
+load("Hwk1_workspace.Rdata")
+```
+
+
 ```{r cars}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 full.ma.data <- read_rds("data/output/full_ma_data.rds")
